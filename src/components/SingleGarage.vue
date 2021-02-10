@@ -6,31 +6,49 @@
       :class="'griditem' + vehicleIndex"
       :key="vehicle._id"
     >
-      <SingleCar
-        :vehicle="vehicle"
-        @click.native="testingTef(vehicleIndex)"
-      ></SingleCar>
+      <div class="singleCar" @click="testingTef(vehicleIndex)">
+        <!-- conditionally show image  -->
+        <img
+          class="carImg"
+          :src="vehicle.img"
+          v-if="vehicle.img"
+          alt="No Preview"
+        />
+        <img class="carImg" :src="dummyImg" v-else alt="No Preview" />
+        <div class="p-3">
+          <h3 class="make">{{ vehicle.make }}</h3>
+          <div class="modelDetails">
+            <div class="model d-flex ">
+              <p class="bold">Model:</p>
+              <p class="price ml-auto ">{{ vehicle.model }}</p>
+            </div>
+            <div class="price d-flex ">
+              <p class="bold">Price:</p>
+              <p class="price ml-auto ">&euro;{{ vehicle.price }}</p>
+            </div>
+          </div>
+          <p class="dateAdded ml-auto ">{{ vehicle.date_added }}</p>
+        </div>
+      </div>
     </div>
-
-
   </div>
 </template>
 <script>
-import SingleCar from "@/components/SingleCar";
+// import SingleCar from "@/components/SingleCar";
 export default {
   name: "SingleGarage",
-  components: { SingleCar },
+  // components: { SingleCar },
   props: ["detail"],
   data: () => ({
     dummyImg: require("@/assets/img/dummycar.png"),
-    currentCar : 1
+    currentCar: 1,
   }),
   methods: {
     testingTef(vehicleIndex) {
-      this.$parent.$emit('emitData',this.detail.cars.vehicles[vehicleIndex].make)
-      this.$root.$emit('bv::toggle::collapse', 'my-sidebar')
-      console.log(this.detail.cars.vehicles[vehicleIndex].make)
-      console.log(this.detail.cars.vehicles[vehicleIndex].date_added)
+      this.$emit("emitData", this.detail.cars.vehicles[vehicleIndex].make);
+      this.$root.$emit("bv::toggle::collapse", "my-sidebar");
+      console.log(this.detail.cars.vehicles[vehicleIndex].make);
+      console.log(this.detail.cars.vehicles[vehicleIndex].date_added);
       this.currentCar = this.detail.cars.vehicles[vehicleIndex].make;
     },
   },
@@ -43,6 +61,17 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 12px;
   row-gap: 12px;
+}
+
+p.dateAdded.ml-auto {
+  font-size: 10px;
+  color: grey;
+  text-align: right;
+  margin-top: 15px;
+}
+
+.modelDetails {
+  margin-top: 25px;
 }
 
 p.dateAdded.ml-auto {
