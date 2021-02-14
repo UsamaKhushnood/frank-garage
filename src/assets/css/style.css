@@ -49,7 +49,7 @@ p.dateAdded.ml-auto {
     font-size: 10px;
     color: grey;
     text-align: right;
-    margin-top: 15px;
+    margin-top: 0;
 }
 
 .modelDetails {
@@ -58,11 +58,13 @@ p.dateAdded.ml-auto {
 
 .singleCar {
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
     transition: all 0.3s;
 }
 
 .singleCar:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 div#my-sidebar {
@@ -90,11 +92,11 @@ p.selectedCar-year {
 }
 
 p.selectedCar-year:before {
-    content: '(';
+    content: "(";
 }
 
 p.selectedCar-year:after {
-    content: ')';
+    content: ")";
 }
 
 p.selectedGarage-location {
@@ -102,9 +104,37 @@ p.selectedGarage-location {
 }
 
 p.selectedGarage-location::before {
-    content: '(';
+    content: "(";
 }
 
 p.selectedGarage-location:after {
-    content: ')';
+    content: ")";
+}
+
+.count-badge {
+    top: -15px;
+    position: relative;
+    left: 0px;
+}
+
+p.nolicensed {
+    position: absolute;
+    background: red;
+    top: 30px;
+    right: -58px;
+    width: 200px;
+    transform: rotate(45deg);
+    text-align: center;
+    color: #fff;
+}
+
+p.licensed {
+    position: absolute;
+    background: green;
+    top: 30px;
+    right: -58px;
+    width: 200px;
+    transform: rotate(45deg);
+    text-align: center;
+    color: #fff;
 }
