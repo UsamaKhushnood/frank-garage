@@ -87,18 +87,17 @@ export default {
       this.$root.$emit("bv::toggle::collapse", "my-sidebar");
     },
     addToCart(index) {
+      // debugger;
       var item = this.sorted[index];
       var findProduct = this.cart.find((o) => o.Name === item.Name);
       if (findProduct) {
         item.quantity++;
-        item.totalPrice = item.quantity * item.Price
-        this.cart.splice(index, 1)
-        this.cart.push(item); 
-        return
+        item.totalPrice = item.quantity * item.Price;
+        return;
       } else {
-        this.cart.push(item); 
+        this.cart.push(item);
         item.quantity = 1;
-        item.totalPrice = item.quantity * item.Price
+        item.totalPrice = item.quantity * item.Price;
       }
     },
     addToCartFromSidebar() {
@@ -106,14 +105,12 @@ export default {
       var findProduct = this.cart.find((o) => o.Name === item.Name);
       if (findProduct) {
         item.quantity++;
-        item.totalPrice = item.quantity * item.Price
-        this.cart.splice(this.index, 1)
-        this.cart.push(item); 
-        return
+        item.totalPrice = item.quantity * item.Price;
+        return;
       } else {
-        this.cart.push(item); 
+        this.cart.push(item);
         item.quantity = 1;
-        item.totalPrice = item.quantity * item.Price
+        item.totalPrice = item.quantity * item.Price;
       }
     },
     checkoutSidebar() {
